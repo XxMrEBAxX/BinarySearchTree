@@ -1,9 +1,11 @@
 ﻿#include <iostream>
 #include "BinarySearchTree.h"
+#include "RedBlackTree.h"
 using namespace std;
 
 int main()
 {
+	/*
 	BinarySearchTree bst;
 	bst.insertN(12); bst.insertN(6); bst.insertN(4); bst.insertN(9);
 	bst.insertN(11); bst.insertN(20); bst.insertN(18); bst.insertN(44);
@@ -18,4 +20,10 @@ int main()
 
 	bst.Show();
 	cout << endl;
+	*/
+
+	RBTREE tree;
+	tree.SelectMenu();
+
+	return 0;
 }
