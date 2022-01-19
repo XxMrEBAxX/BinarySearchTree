@@ -23,6 +23,11 @@ int main()
 	*/
 
 	RBTREE tree;
+	// 0 ~ 99 데이터 삽입 (최악의 삽입 시나리오)
+	for (size_t i = 0; i < 100; i++)
+	{
+		tree.Insert(i);
+	}
 	tree.SelectMenu();
 
 	return 0;

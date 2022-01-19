@@ -84,52 +84,6 @@ private:
         return t;
     }
 
-    void Insert(int item)
-    {
-        // x : 삽입할 곳 찾기위한 포인터 | y : 삽입할 곳의 부모노드
-        NodePtr x = this->root, y = nullptr;
-        NodePtr z = new node();
-        z->key = item;
-        z->color = RED;
-        z->parent = nullptr;
-        z->left = leafNode;
-        z->right = leafNode;
-
-        /*BST의 일반 삽입 연산*/
-        while (x != leafNode)
-        {
-            y = x;
-            if (x->key < item)
-                x = x->right;
-            else
-                x = x->left;
-        }
-
-        z->parent = y;
-
-        if (y == nullptr)
-            root = z;
-        else if (z->key > y->key)
-            y->right = z;
-        else
-            y->left = z;
-
-        //z가 root노드라면
-        if (z->parent == nullptr)
-        {
-            z->color = BLACK;
-            return;
-        }
-        // z의 부모노드가 root노드라면 Fix Up 필요없이 red컬러로 붙여주면 된다.
-        if (z->parent->parent == nullptr)
-        {
-            return;
-        }
-        InsertFixUp(z);
-
-        return;
-    }
-
     void InsertFixUp(NodePtr z)
     {
         /*root 노드가 아니고 부모 색이 red라면*/
@@ -439,6 +393,51 @@ public:
         leafNode->right = nullptr;
         leafNode->parent = nullptr;
         root = leafNode;
+    }
+    void Insert(int item)
+    {
+        // x : 삽입할 곳 찾기위한 포인터 | y : 삽입할 곳의 부모노드
+        NodePtr x = this->root, y = nullptr;
+        NodePtr z = new node();
+        z->key = item;
+        z->color = RED;
+        z->parent = nullptr;
+        z->left = leafNode;
+        z->right = leafNode;
+
+        /*BST의 일반 삽입 연산*/
+        while (x != leafNode)
+        {
+            y = x;
+            if (x->key < item)
+                x = x->right;
+            else
+                x = x->left;
+        }
+
+        z->parent = y;
+
+        if (y == nullptr)
+            root = z;
+        else if (z->key > y->key)
+            y->right = z;
+        else
+            y->left = z;
+
+        //z가 root노드라면
+        if (z->parent == nullptr)
+        {
+            z->color = BLACK;
+            return;
+        }
+        // z의 부모노드가 root노드라면 Fix Up 필요없이 red컬러로 붙여주면 된다.
+        if (z->parent->parent == nullptr)
+        {
+            return;
+        }
+        InsertFixUp(z);
+
+        return;
     }
     //최솟값 찾기
     NodePtr tree_minimum(NodePtr x)
